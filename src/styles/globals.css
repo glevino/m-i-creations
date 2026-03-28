@@ -107,6 +107,97 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(74,72,112,0.08); }
   transform: translateY(-2px) !important;
 }
 
+/* ── HAMBURGER (mobile only) ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 200;
+}
+.nav-hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--slate);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.nav-hamburger--open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger--open span:nth-child(2) { opacity: 0; }
+.nav-hamburger--open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── MOBILE DRAWER ── */
+.nav-drawer {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0; right: 0;
+  background: rgba(250, 248, 255, 0.98);
+  backdrop-filter: blur(16px);
+  z-index: 99;
+  padding: 32px clamp(24px, 6vw, 60px) 40px;
+  border-bottom: 1px solid var(--mist);
+  transform: translateY(-110%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+.nav-drawer--open {
+  transform: translateY(0);
+  pointer-events: all;
+}
+.nav-drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.nav-drawer-links a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  font-weight: 300;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--mist);
+  transition: color 0.2s;
+}
+.nav-drawer-links a:hover,
+.nav-drawer-links a.active { color: var(--pink); }
+.nav-drawer-links li:last-child a { border-bottom: none; }
+
+.nav-drawer-social {
+  display: flex !important;
+  align-items: center;
+  gap: 10px;
+  color: var(--slate) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.nav-drawer-social:hover { color: var(--pink) !important; }
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 98;
+  background: rgba(30, 27, 46, 0.3);
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
 /* ── HERO ── */
 .hero {
   min-height: 85vh;
