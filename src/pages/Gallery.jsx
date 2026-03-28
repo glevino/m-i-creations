@@ -1,6 +1,41 @@
 import { useState, useEffect } from 'react'
 import { fetchPhotosByCategory } from '../lib/contentful'
 
+const reels = [
+  'https://www.instagram.com/reel/DWb1Oj9joyB/',
+  'https://www.instagram.com/reel/DQ8Rle-DcC9/',
+  'https://www.instagram.com/reel/DOVw-R8jamG/',
+]
+
+function InstagramReels() {
+  useEffect(() => {
+    // Tell Instagram's embed script to process any new blockquotes
+    if (window.instgrm) {
+      window.instgrm.Embeds.process()
+    }
+  }, [])
+
+  return (
+    <div className="gallery-section gallery-section--reels">
+      <div className="gallery-section-label">
+        <p className="section-eyebrow">Behind the scenes</p>
+        <h2 className="gallery-section-title">Latest <em>Reels</em></h2>
+      </div>
+      <div className="reels-grid">
+        {reels.map((url) => (
+          <div className="reel-item" key={url}>
+            <blockquote
+              className="instagram-media"
+              data-instgrm-permalink={`${url}?utm_source=ig_embed&utm_campaign=loading`}
+              data-instgrm-version="14"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // ── Static fallbacks ──────────────────────────────────────────────────────────
 
 const staticNails = [
@@ -54,6 +89,8 @@ export default function Gallery() {
         <p className="section-eyebrow">Portfolio</p>
         <h1 className="section-title">The work<br /><em>speaks for itself</em></h1>
       </div>
+
+      <InstagramReels />
 
       {/* ── NAILS ── */}
       <div className="gallery-section">

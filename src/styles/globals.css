@@ -1396,6 +1396,34 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(74,72,112,0.08); }
 .gallery-section--alt {
   background: var(--blush);
 }
+.gallery-section--reels {
+  background: var(--ink);
+}
+.gallery-section--reels .section-eyebrow { color: var(--periwinkle); }
+.gallery-section--reels .gallery-section-title { color: var(--white); }
+.gallery-section--reels .gallery-section-title em { color: var(--pink); }
+
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.reel-item { width: 100%; }
+.reel-item .instagram-media {
+  margin: 0 auto !important;
+  min-width: unset !important;
+  width: 100% !important;
+  border-radius: 16px !important;
+}
+
+@media (max-width: 768px) {
+  .reels-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
 
 .gallery-section-label {
   margin-bottom: clamp(30px, 4vw, 50px);
